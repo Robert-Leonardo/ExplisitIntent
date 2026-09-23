@@ -17,4 +17,8 @@ class MainActivity3 : AppCompatActivity() {
             insets
         }
     }
+
+    companion object{
+        const val dataTerima = "extra_dataTerima"
+    }
 }
