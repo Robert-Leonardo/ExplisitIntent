@@ -32,5 +32,15 @@ class MainActivity : AppCompatActivity() {
 
         val _dataKirim = findViewById<EditText>(R.id.dataKirim)
         val _btnExplisit2 = findViewById<Button>(R.id.btnExplisit2)
+
+        _btnExplisit2.setOnClickListener {
+            val intentWithData = Intent(
+                this@MainActivity,
+                MainActivity3::class.java
+            ).apply {
+                putExtra(MainActivity3.dataTerima, _dataKirim.text.toString())
+            }
+            startActivity(intentWithData)
+        }
     }
 }
