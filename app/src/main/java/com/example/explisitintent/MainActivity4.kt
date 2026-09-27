@@ -18,11 +18,19 @@ class MainActivity4 : AppCompatActivity() {
             insets
         }
 
-        val intentPegawai: Pegawai? = intent.getParcelableExtra(DataPegawai, Pegawai::class.java)
+        val intentPegawai = intent.getParcelableArrayListExtra<Pegawai>(
+            DataPegawai,
+            Pegawai::class.java
+        )
 
-        val isiText = "NIP : ${intentPegawai?.NIP.toString()}\n" +
-                "Nama : ${intentPegawai?.Nama.toString()}\n" +
-                "Dept : ${intentPegawai?.Dept.toString()}"
+        val isiText = "NIP : ${intentPegawai!![0].NIP.toString()}, " +
+                "\nNama : ${intentPegawai[0].Nama.toString()}, " +
+                "\nDept : ${intentPegawai[0].Dept.toString()}" +
+                "\n" +
+                "\nNIP : ${intentPegawai[1].NIP.toString()}, " +
+                "\nNama : ${intentPegawai[1].Nama.toString()}, " +
+                "\nDept : ${intentPegawai[1].Dept.toString()}"
+
 
         val showDataPegawai = findViewById<TextView>(R.id.showDataPegawai)
         showDataPegawai.text = isiText

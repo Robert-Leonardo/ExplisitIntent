@@ -43,11 +43,9 @@ class MainActivity : AppCompatActivity() {
             startActivity(intentWithData)
         }
 
-        val isiPegawai = Pegawai(
-            1,
-            "Solman",
-            "Data Analyst"
-        )
+        val isiPegawai : ArrayList<Pegawai> = arrayListOf()
+        isiPegawai.add(Pegawai(1,"Anita", "Test"))
+        isiPegawai.add(Pegawai(2,"Tatik", "Marketing"))
 
         _btnExplisit3.setOnClickListener {
             val intentWithObject = Intent(
