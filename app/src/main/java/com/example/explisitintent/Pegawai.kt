@@ -5,7 +5,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Pegawai(
-    val Nip : Int,
+    val NIP : Int,
     val Nama : String?,
     val Dept : String?
 ) : Parcelable
