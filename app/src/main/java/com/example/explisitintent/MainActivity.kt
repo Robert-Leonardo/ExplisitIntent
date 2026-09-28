@@ -1,5 +1,6 @@
 package com.example.explisitintent
 
+import android.app.Activity
 import android.os.Bundle
 import android.widget.Button
 import androidx.activity.enableEdgeToEdge
@@ -8,8 +9,23 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import android.content.Intent
 import android.widget.EditText
+import android.widget.TextView
+import androidx.activity.result.contract.ActivityResultContracts
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var _returnHasil : TextView
+
+    private val resultLauncher = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ){ result ->
+        if (result.resultCode == Activity.RESULT_OK && result.data != null){
+            val seletedItem = result.data?.getStringExtra(MainActivity5.SelectedItem)
+            _returnHasil.text = seletedItem
+        }
+
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -23,7 +39,10 @@ class MainActivity : AppCompatActivity() {
         val _btnExplisit1= findViewById<Button>(R.id.btnExplisit1)
         val _btnExplisit2 = findViewById<Button>(R.id.btnExplisit2)
         val _btnExplisit3 = findViewById<Button>(R.id.btnExplisit3)
+        val _btnExplisit4 = findViewById<Button>(R.id.btnExplisit4)
         val _dataKirim = findViewById<EditText>(R.id.dataKirim)
+
+        _returnHasil = findViewById(R.id.returnHasil)
 
         _btnExplisit1.setOnClickListener {
             val intent = Intent(
@@ -55,6 +74,14 @@ class MainActivity : AppCompatActivity() {
                 putExtra(MainActivity4.DataPegawai, isiPegawai)
             }
             startActivity(intentWithObject)
+        }
+
+        _btnExplisit4.setOnClickListener {
+            val intentWithResult = Intent(
+                this@MainActivity,
+                MainActivity5::class.java
+            )
+            resultLauncher.launch(intentWithResult)
         }
 
     }
